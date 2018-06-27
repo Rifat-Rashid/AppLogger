@@ -15,18 +15,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         isRunning = true;
+        createBackgroundThread();
     }
 
     /**
      * Creates a new thread for background app operations
-     * @define later
+     *
      * @return null
+     * @define later
      */
-    private void createBackgroundThread(){
+    private void createBackgroundThread() {
         Runnable r = new Runnable() {
             @Override
             public void run() {
-                while(isRunning){
+                while (isRunning) {
                     System.out.println("Hi");
                     try {
                         Thread.sleep(1000);
@@ -37,6 +39,11 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         new Thread(r).start();
+    }
+
+    @Override
+    public String toString(){
+        return null;
     }
 
 }
