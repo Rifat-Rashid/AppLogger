@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
      * @define later
      */
     private void createBackgroundThread() {
+
         Runnable r = new Runnable() {
             @Override
             public void run() {
@@ -38,11 +39,18 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         };
-        new Thread(r).start();
+
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                //same thing
+            }
+        });
     }
 
     @Override
     public String toString(){
+        System.out.println("hello");
         return null;
     }
 
