@@ -8,13 +8,35 @@ import com.squareup.picasso.Picasso;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static boolean isRunning = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ImageView imgView = (ImageView) findViewById(R.id.imageView2);
-        Picasso.with(this)
-                .load("https://d1oglr07rm6q0i.cloudfront.net/a4f28210-0f5f-4b69-8e7c-3f3b46b6290c.large.jpg")
-                .into(imgView);
+        isRunning = true;
     }
+
+    /**
+     * Creates a new thread for background app operations
+     * @define later
+     * @return null
+     */
+    private void createBackgroundThread(){
+        Runnable r = new Runnable() {
+            @Override
+            public void run() {
+                while(isRunning){
+                    System.out.println("Hi");
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        };
+        new Thread(r).start();
+    }
+
 }
